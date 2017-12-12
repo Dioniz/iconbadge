@@ -1,0 +1,4 @@
+include ':iconbadge', ':iconbadge-sample'
+
+
+rootProject.name = 'iconbadge-root'

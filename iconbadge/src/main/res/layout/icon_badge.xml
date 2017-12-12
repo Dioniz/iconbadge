@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/itv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="{fa-android}"
+        android:textSize="50sp"/>
+
+    <TextView
+        android:id="@+id/tv_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/itv_icon"
+        android:layout_alignRight="@id/itv_icon"
+        android:layout_alignEnd="@id/itv_icon"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:background="@drawable/badge_circle"
+        android:textColor="#FFF"
+        android:text="0"/>
+
+</RelativeLayout>

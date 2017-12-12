@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <declare-styleable name="IconBadge">
+        <attr name="iconsrc" format="string" />
+        <attr name="iconColor" format="color" />
+        <attr name="badgeNumber" format="string" />
+        <attr name="badgeTextColor" format="color" />
+        <attr name="badgeBackgroundColor" format="color" />
+        <attr name="badgeBorderColor" format="color" />
+        <attr name="badgeBorderWidth" format="dimension" />
+
+        <attr name="badgeCornersRadius" format="dimension" />
+        <attr name="badgeCornersRadiusTopLeft" format="dimension" />
+        <attr name="badgeCornersRadiusTopRight" format="dimension" />
+        <attr name="badgeCornersRadiusBottomLeft" format="dimension" />
+        <attr name="badgeCornersRadiusBottomRight" format="dimension" />
+
+        <attr name="iconDimen" format="dimension" />
+        <attr name="badgeDimen" format="enum" >
+            <enum name="small" value="0" />
+            <enum name="regular" value="1" />
+            <enum name="big" value="2" />
+        </attr>
+        <attr name="badgePosition" format="enum" >
+            <enum name="topLeft" value="0" />
+            <enum name="topRight" value="1" />
+            <enum name="bottomLeft" value="2" />
+            <enum name="bottomRight" value="3" />
+        </attr>
+
+    </declare-styleable>
+    
+</resources>

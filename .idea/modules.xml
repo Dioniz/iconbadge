@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/iconbadge/iconbadge.iml" filepath="$PROJECT_DIR$/iconbadge/iconbadge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/iconbadge-root.iml" filepath="$PROJECT_DIR$/.idea/modules/iconbadge-root.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iconbadge-sample/iconbadge-sample.iml" filepath="$PROJECT_DIR$/iconbadge-sample/iconbadge-sample.iml" />
+    </modules>
+  </component>
+</project>
