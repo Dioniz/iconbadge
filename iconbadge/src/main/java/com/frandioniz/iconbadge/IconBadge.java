@@ -2,11 +2,15 @@ package com.frandioniz.iconbadge;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.IntDef;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,8 +20,10 @@ import com.joanzapata.iconify.widget.IconTextView;
 public class IconBadge extends RelativeLayout {
 
     private Context mContext;
-    private IconTextView mIconTV;
+    private IconTextView mIconITV;
+    private ImageView mIconIV;
     private TextView mBadgeTV;
+    private int currentIconView;
 
     private int mIconColor;
     private int mBadgeTextColor;
@@ -26,6 +32,7 @@ public class IconBadge extends RelativeLayout {
     private int mBorderWidth = 1;
     private int mBadgeNumber = -1;
     private int mBadgeCornersRadius = -1;
+    private int mIconDimen;
     private @BadgeDimen int mBadgeDimen = DIM_SMALL;
     private @BadgePosition int mBadgePosition = POS_TOP_RIGHT;
 
@@ -51,8 +58,10 @@ public class IconBadge extends RelativeLayout {
 
     private void init() {
         inflate(mContext, R.layout.icon_badge, this);
-        mIconTV = findViewById(R.id.itv_icon);
+        mIconITV = findViewById(R.id.itv_icon);
+        mIconIV = findViewById(R.id.iv_icon);
         mBadgeTV = findViewById(R.id.tv_badge);
+        currentIconView = R.id.itv_icon;
 
         mBorderWidth = DimenUtils.dpToPx(mContext, mBorderWidth);
         mIconColor = ContextCompat.getColor(mContext, android.R.color.holo_blue_light);
@@ -94,8 +103,9 @@ public class IconBadge extends RelativeLayout {
                 setBadgeCornersRadius(topLeftCornerRadius, topRightCornerRadius, bottomRightCornerRadius, bottomLeftCornerRadius);
             }
 
-            int iconDimen = (int) a.getDimension(R.styleable.IconBadge_iconDimen, 10);
+            int iconDimen = Math.round(a.getDimension(R.styleable.IconBadge_iconDimen, 10) / getResources().getDisplayMetrics().density);
             int badgeDimen = a.getInt(R.styleable.IconBadge_badgeDimen, 0);
+            mIconDimen = iconDimen;
             setDimens(iconDimen, badgeDimen);
 
             int badgePosition = a.getInt(R.styleable.IconBadge_badgePosition, 1);
@@ -109,7 +119,7 @@ public class IconBadge extends RelativeLayout {
 
     private void setIconColorAttr(int color) {
         mIconColor = color;
-        mIconTV.setTextColor(color);
+        mIconITV.setTextColor(color);
     }
 
     private void setBadgeTextColorAttr(int color) {
@@ -127,14 +137,35 @@ public class IconBadge extends RelativeLayout {
         DrawableUtils.changeBorderColor(mBadgeTV, mBorderColor, mBorderWidth);
     }
 
+    private void switchToIconView(int iconRes) {
+        currentIconView = iconRes;
+        RelativeLayout.LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+        params.addRule(ALIGN_TOP, iconRes);
+        params.addRule(ALIGN_RIGHT, iconRes);
+        params.addRule(ALIGN_END, iconRes);
+    }
+
     /* Icon methods */
+    public void setIcon(int drawableRes) {
+        Drawable drawable = ContextCompat.getDrawable(mContext, drawableRes);
+        mIconIV.setImageDrawable(drawable);
+        mIconIV.setVisibility(VISIBLE);
+        mIconITV.setVisibility(GONE);
+        switchToIconView(R.id.iv_icon);
+    }
+
     public void setIcon(String icon) {
-        mIconTV.setText(icon);
+        mIconITV.setText(icon);
+        mIconITV.setVisibility(VISIBLE);
+        mIconIV.setVisibility(GONE);
+        switchToIconView(R.id.itv_icon);
     }
 
     public void setIconColor(int color) {
         mIconColor = ContextCompat.getColor(mContext, color);
-        mIconTV.setTextColor(mIconColor);
+        mIconITV.setTextColor(mIconColor);
+        mIconIV.getDrawable().setColorFilter(new
+                PorterDuffColorFilter(mIconColor, PorterDuff.Mode.MULTIPLY));
     }
 
     /* Badge methods */
@@ -182,9 +213,12 @@ public class IconBadge extends RelativeLayout {
 
     /* Both methods */
     public void setDimens(int iconDimen, @BadgeDimen int badgeDimen) {
+        mIconDimen = iconDimen;
         mBadgeDimen = badgeDimen;
         int pixels = DimenUtils.dpToPx(mContext, iconDimen);
-        mIconTV.setTextSize(pixels);
+        mIconITV.setTextSize(pixels);
+        mIconIV.getLayoutParams().width = pixels * 3;
+        mIconIV.getLayoutParams().height = pixels * 3;
 
         float percent = 0.2f;
         switch (badgeDimen) {
@@ -217,6 +251,10 @@ public class IconBadge extends RelativeLayout {
         });
     }
 
+    public int getIconDimen() {
+        return mIconDimen;
+    }
+
     public @BadgeDimen int getBadgeDimen() {
         return mBadgeDimen;
     }
@@ -247,7 +285,7 @@ public class IconBadge extends RelativeLayout {
                 verbs[1] = ALIGN_TOP;
         }
         for (int verb : verbs) {
-            params.addRule(verb, R.id.itv_icon);
+            params.addRule(verb, currentIconView);
         }
         mBadgeTV.setLayoutParams(params);
     }
