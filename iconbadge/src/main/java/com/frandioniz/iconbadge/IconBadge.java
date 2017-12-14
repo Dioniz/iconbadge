@@ -79,8 +79,11 @@ public class IconBadge extends RelativeLayout {
 
         try {
             String icon = a.getString(R.styleable.IconBadge_iconsrc);
+            int iconRes = a.getResourceId(R.styleable.IconBadge_iconsrcDrawable, -1);
             if (icon != null) {
                 setIcon(icon);
+            } else if (iconRes != -1) {
+                setIcon(iconRes);
             }
             setIconColorAttr(a.getColor(R.styleable.IconBadge_iconColor, mIconColor));
             String badgeNumber = a.getString(R.styleable.IconBadge_badgeNumber);

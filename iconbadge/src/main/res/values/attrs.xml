@@ -3,6 +3,7 @@
     
     <declare-styleable name="IconBadge">
         <attr name="iconsrc" format="string" />
+        <attr name="iconsrcDrawable" format="integer" />
         <attr name="iconColor" format="color" />
         <attr name="badgeNumber" format="string" />
         <attr name="badgeTextColor" format="color" />
