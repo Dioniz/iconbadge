@@ -50,6 +50,7 @@ iconBadge.setBadgeBackgroundColor(R.color.colorOrange);
 iconBadge.setBadgeCornersRadius(200);
 ```
 
+
 This library use the [JoanZapata/android-iconify](https://github.com/JoanZapata/android-iconify) library for icons. You can use any icon in this library, setting the value in xml or java code.
 
 
