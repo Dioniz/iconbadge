@@ -2,7 +2,7 @@
 
 ## Install
 Add this dependency to your app build.gradle file:
-```java
+```gradle
 dependencies {
     compile 'com.frandioniz.iconbadge:iconbadge:1.0'
 }
