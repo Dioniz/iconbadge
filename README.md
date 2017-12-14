@@ -1,5 +1,5 @@
 
-<img src="graphics/head.png" height="154" align="center">
+<img src="graphics/head.png" height="256" align="center">
 
 **IconBadge** is a simple library that facilitates the use of **badges** in your **icons**. You have a lot of options to customize the badges, start using it! It's **easy** and **intuitive**
 
