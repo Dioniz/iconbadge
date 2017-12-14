@@ -67,5 +67,8 @@ dependencies {
     implementation 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+// 1- Uncomment for upload to Bintray.
+// 2- Set bintray.user and bintray.apikey in local.properties
+// 3- Execute gradlew install and gradlew bintrayUpload
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
