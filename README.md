@@ -1,8 +1,6 @@
 
 <img src="graphics/head.png" height="256" align="center">
 
-[![Build Status](https://travis-ci.org/Dioniz/iconbadge.svg?branch=master)](https://travis-ci.org/Dioniz/iconbadge)
-
 **IconBadge** is a simple library that facilitates the use of **badges** in your **icons**. You have a lot of options to customize the badges, start using it! It's **easy** and **intuitive**
 
 -----
